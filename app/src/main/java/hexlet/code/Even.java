@@ -44,6 +44,7 @@ public class Even {
         String answer3 = App.scanner.next();
         if (randomNumber3 % 2 == 0 && "yes".equals(answer3)) {
             System.out.println("Correct!");
+            System.out.println("Congratulations, Bill!");
         } else if (randomNumber3 % 2 != 0 && "no".equals(answer3)) {
             System.out.println("Correct!");
             System.out.println("Congratulations, Bill!");
