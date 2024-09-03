@@ -5,17 +5,14 @@ public class Even {
         Cli.greeting();
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
         // First random number
-        String answer1 = "";
-        String answer2 = "";
-        String answer3 = "";
-        String answerYes = "yes";
-        String answerNo = "no";
+        // String answerYes = "yes";
+        // String answerNo = "no";
         int a = 1; // Начальное число диапазона
         int b = 20; // Конечное число диапазона
         int randomNumber1 = a + (int) (Math.random() * b);
         System.out.println("Question: " + randomNumber1);
         System.out.println("Your answer: ");
-         answer1 = App.scanner.next();
+        String answer1 = App.scanner.next();
          if (randomNumber1 % 2 == 0 && "yes".equals(answer1)) {
              System.out.println("Correct!");
          } else if (randomNumber1 % 2 != 0 && "no".equals(answer1)) {
@@ -29,7 +26,7 @@ public class Even {
         int randomNumber2 = a + (int) (Math.random() * b);
         System.out.println("Question: " + randomNumber2);
         System.out.println("Your answer: ");
-        answer2 = App.scanner.next();
+        String answer2 = App.scanner.next();
         if (randomNumber2 % 2 == 0 && "yes".equals(answer2)) {
             System.out.println("Correct!");
         } else if (randomNumber2 % 2 != 0 && "no".equals(answer2)) {
@@ -44,7 +41,7 @@ public class Even {
         int randomNumber3 = a + (int) (Math.random() * b);
         System.out.println("Question: " + randomNumber3);
         System.out.println("Your answer: ");
-        answer3 = App.scanner.next();
+        String answer3 = App.scanner.next();
         if (randomNumber3 % 2 == 0 && "yes".equals(answer3)) {
             System.out.println("Correct!");
         } else if (randomNumber3 % 2 != 0 && "no".equals(answer3)) {
