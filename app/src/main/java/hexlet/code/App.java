@@ -17,6 +17,7 @@ public class App {
         while (!"2".equals(s)) {
             System.out.println("1 - Great");
             System.out.println("2 - Even");
+            System.out.println("3 - Calc");
             System.out.println("0 - Exit");
             System.out.println("Your choice:");
             s = scanner.next();
@@ -30,11 +31,12 @@ public class App {
             switch (x) {
                 case 1 -> Cli.greeting();
                 case 2 -> Even.evenGame();
+                case 3 -> Calc.calcGame();
                 case 0 -> {
                     System.exit(0);
                 }
                 default -> System.out.println("Choose correct number");
-}
+            }
         }
 
     }
