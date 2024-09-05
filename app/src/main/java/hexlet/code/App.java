@@ -17,6 +17,7 @@ public class App {
             System.out.println("2 - Even");
             System.out.println("3 - Calc");
             System.out.println("4 - GCD");
+            System.out.println("5 - Progression");
             System.out.println("0 - Exit");
             System.out.println("Your choice:");
             s = Engine.scanner.next();
@@ -32,6 +33,7 @@ public class App {
                 case 2 -> Even.evenGame();
                 case 3 -> Calc.calcGame();
                 case 4 -> Gcd.gcdGame();
+                case 5 -> Progression.progressionGame();
                 case 0 -> {
                     System.exit(0);
                 }
