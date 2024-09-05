@@ -3,20 +3,21 @@ package hexlet.code;
 public class Calc {
 
     public static void calcGame() {
-        Cli.greeting(); // Greeting
+        Engine.putWelcomeMessage();
+        Engine.getUserName();
         System.out.println("What is the result of the expression?");
 
-        askQuestion(); // First question
-        askQuestion(); // Second question
-        askQuestion(); // Third question
+        putTask(); // First question
+        putTask(); // Second question
+        putTask(); // Third question
 
-        System.out.println("Congratulations, Bill!");
+        Engine.putCongratulationMessage();
 
     }
 
     // Calc question logic
 
-    public static void askQuestion() {
+    public static void putTask() {
 
         String operatorSwitch = "null";
 
@@ -43,10 +44,10 @@ public class Calc {
 
         System.out.println("Question: " + number1 + operatorSwitch + number2);
         System.out.println("Your answer: ");
-        int answer = Integer.parseInt(App.scanner.next());
+        int answer = Integer.parseInt(Engine.scanner.next());
 
         if (result == answer) {
-            System.out.println("Correct!");
+            Engine.putCorrectMessage();
         } else {
             System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + result + "'.");
             System.out.println("Let's try again,"); // добавить юзера
