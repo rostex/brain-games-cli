@@ -1,7 +1,5 @@
 package hexlet.code;
-
 import java.util.Scanner;
-
 
 public class Engine {
     public static int numberOfRounds = 3;
@@ -14,7 +12,7 @@ public class Engine {
         String userName = scanner.next();
         System.out.println("Hello, " + userName + "!");
         System.out.println(gameDescription);
-
+        // Logic of question rounds
         for (int i = 0; i < numberOfRounds; i++) {
             System.out.println("Question: " + gameData[i][0]);
             System.out.println("Answer: ");
@@ -29,13 +27,10 @@ public class Engine {
             }
         }
         System.out.println("Congratulations, " + userName);
-
     }
-
+    // Get random number method
     public static int getRandomNumber(int min, int max) {
         int randomNumber = min + (int) (Math.random() * max);
         return randomNumber;
     }
-
-
 }

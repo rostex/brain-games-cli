@@ -1,18 +1,15 @@
 package hexlet.code;
 
-import hexlet.code.Engine;
-import java.util.Scanner;
-
 public class App {
 
     public static void main(String[] args) {
-        // Приветствие
+        // Greeting
         System.out.println("Please enter the game number and press Enter.");
 
         int x = 0;
         String s = "";
 
-        // Контекстное меню
+        // Context menu
         while (!"2".equals(s)) {
             System.out.println("1 - Great");
             System.out.println("2 - Even");
@@ -43,6 +40,5 @@ public class App {
                 default -> System.out.println("Choose correct number");
             }
         }
-
     }
 }
