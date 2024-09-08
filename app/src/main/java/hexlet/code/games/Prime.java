@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.games;
+
+import hexlet.code.Engine;
 
 public class Prime {
     static String gameDiscription = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";

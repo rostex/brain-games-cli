@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.games;
+
+import hexlet.code.Engine;
 
 public class Gcd {
     static String gameDiscription = "Find the greatest common divisor of given numbers.";
