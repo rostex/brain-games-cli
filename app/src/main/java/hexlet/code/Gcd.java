@@ -1,33 +1,31 @@
 package hexlet.code;
 
 public class Gcd {
+    static String gameDiscription = "Find the greatest common divisor of given numbers.";
 
-    public static void gcdGame() {
-        Cli.greeting(); // Greeting
-        System.out.println("Find the greatest common divisor of given numbers.");
 
-        putTask();
-        putTask();
-        putTask();
+    public static void startGame() {
 
-        Engine.putCongratulationMessage();
-    }
+        String[][] gameData = new String[Engine.numberOfRounds][2];
 
-    public static void putTask() {
-        int number1 = Engine.getRandomNumber(1, 20);
-        int number2 = Engine.getRandomNumber(1, 20);
-        int result = Engine.getGcd(number1, number2);
+        for (int i = 0; i < Engine.numberOfRounds; i++) {
 
-        System.out.println("Question: " + number1 + " " + number2);
-        System.out.println("Your answer: ");
-        int answer = Integer.parseInt(Engine.scanner.next());
+            int firstNumber = Engine.getRandomNumber(1, 20);
+            int secondNumber = Engine.getRandomNumber(1, 20);
 
-        if (result == answer) {
-            Engine.putCorrectMessage();
-        } else {
-            System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + result + "'.");
-            System.out.println("Let's try again,"); // добавить юзера
-            App.main(null);
+            gameData[i][0] = String.valueOf(firstNumber) + " " + String.valueOf(secondNumber);
+            gameData[i][1] = getGcd(firstNumber, secondNumber);
         }
+
+        Engine.runGame(gameDiscription, gameData);
+
     }
+
+    public static String getGcd(int a, int b) {
+        if (b == 0) {
+            return String.valueOf(a);
+        }
+        return getGcd(b, a % b);
+    }
+
 }

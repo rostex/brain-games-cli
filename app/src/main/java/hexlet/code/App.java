@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.Engine;
 import java.util.Scanner;
 
 public class App {
@@ -31,11 +32,11 @@ public class App {
 
             switch (x) {
                 case 1 -> Cli.greeting();
-                case 2 -> Even.evenGame();
+                case 2 -> Even.startGame();
                 case 3 -> Calc.startGame();
-                case 4 -> Gcd.gcdGame();
-                case 5 -> Progression.progressionGame();
-                case 6 -> Prime.primeGame();
+                case 4 -> Gcd.startGame();
+                case 5 -> Progression.startGame();
+                case 6 -> Prime.startGame();
                 case 0 -> {
                     System.exit(0);
                 }

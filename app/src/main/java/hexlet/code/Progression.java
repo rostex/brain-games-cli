@@ -3,50 +3,41 @@ package hexlet.code;
 import java.util.Arrays;
 
 public class Progression {
-    public static void progressionGame() {
-        Engine.putWelcomeMessage();
-        Engine.getUserName();
-        System.out.println("What number is missing in the progression?");
+    static String gameDiscription = "What number is missing in the progression?";
 
-        putTask(); // First question
-        putTask(); // Second question
-        putTask(); // Third question
 
-        Engine.putCongratulationMessage();
+    public static void startGame() {
 
-    }
+        String[][] gameData = new String[Engine.numberOfRounds][2];
 
-    public static void putTask() {
-        int progressionLength = Engine.getRandomNumber(5, 10);
-        int firstNumber = Engine.getRandomNumber(3, 9);
-        int[] progression = new int[progressionLength];
-        int range = Engine.getRandomNumber(2, 7);
-        progression [0] = firstNumber;
+        for (int i = 0; i < Engine.numberOfRounds; i++) {
+            gameData[i][0] = "";
 
-        for (int i = 1; i < progression.length; i++) {
-            progression[i] = progression[i - 1] + range;
+            int progressionLength = Engine.getRandomNumber(5, 10);
+            int startProgression = Engine.getRandomNumber(3, 9);
+            int rangeProgression = Engine.getRandomNumber(2, 7);
+            int hiddenNumber = Engine.getRandomNumber(1, progressionLength - 1);
+
+            int[] progression = new int[progressionLength];
+            progression[0] = startProgression;
+
+            for (int j = 1; j < progression.length; j++) {
+                progression[j] = progression[j - 1] + rangeProgression;
+            }
+
+            String[] strProgression = new String[progressionLength];
+            for (int k = 0; k < progression.length; k++) {
+                strProgression[k] = String.valueOf(progression[k]);
+            }
+
+            strProgression[hiddenNumber] = "..";
+
+            gameData[i][0] = Arrays.toString(strProgression).replaceAll("\\[|\\]|,", "");
+            gameData[i][1] = String.valueOf(progression[hiddenNumber]);
+
         }
 
-        String[] strProgression = new String[progression.length];
-        for (int j = 0; j < progression.length; j++) {
-            strProgression[j] = String.valueOf(progression[j]);
-        }
-
-        var randomNumberProgression = Engine.getRandomNumber(1, progression.length - 1);
-        strProgression[randomNumberProgression] = "..";
-
-        System.out.println("Question: " + Arrays.toString(strProgression).replaceAll("\\[|\\]|,", ""));
-        System.out.println("Your answer: ");
-        int answer = Integer.parseInt(Engine.scanner.next());
-
-        if (answer == progression[randomNumberProgression]) {
-            Engine.putCorrectMessage();
-        } else {
-            System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + progression[randomNumberProgression] + "'."); // add var correct-number
-            System.out.println("Let's try again,"); // add userName
-            App.main(null);
-        }
-
+        Engine.runGame(gameDiscription, gameData);
     }
 
 }
