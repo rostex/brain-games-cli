@@ -5,7 +5,9 @@ import hexlet.code.Engine;
 import java.util.Arrays;
 
 public class Progression {
-    static String gameDiscription = "What number is missing in the progression?";
+    private static final String gameDiscription = "What number is missing in the progression?";
+    private static final int min = 5;
+    private static final int max = 10;
 
     public static void startGame() {
         String[][] gameData = new String[Engine.numberOfRounds][2];
@@ -13,10 +15,10 @@ public class Progression {
         for (int i = 0; i < Engine.numberOfRounds; i++) {
             gameData[i][0] = "";
 
-            int progressionLength = Engine.getRandomNumber(5, 10);
-            int startProgression = Engine.getRandomNumber(3, 9);
-            int rangeProgression = Engine.getRandomNumber(2, 7);
-            int hiddenNumber = Engine.getRandomNumber(1, progressionLength - 1);
+            int progressionLength = Engine.getRandomNumber(min, max);
+            int startProgression = Engine.getRandomNumber(min, max);
+            int rangeProgression = Engine.getRandomNumber(min, max);
+            int hiddenNumber = Engine.getRandomNumber(min, progressionLength - 1);
 
             int[] progression = new int[progressionLength];
             progression[0] = startProgression;

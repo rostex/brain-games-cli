@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Engine {
-    public static int numberOfRounds = 3;
+    public static final int numberOfRounds = 3;
     public static Scanner scanner = new Scanner(System.in);
 
     public static void runGame(String gameDescription, String[][] gameData) {
@@ -22,7 +22,9 @@ public class Engine {
             if (userAnswer.equals(gameData[i][1])) {
                 System.out.println("Correct!");
             } else {
-                System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + gameData[i][1] + "'.");
+                System.out.println("'" + userAnswer +
+                        "' is wrong answer ;(. Correct answer was '"
+                        + gameData[i][1] + "'.");
                 System.out.println("Let's try again, " + userName + "!");
                 System.exit(0);
             }
