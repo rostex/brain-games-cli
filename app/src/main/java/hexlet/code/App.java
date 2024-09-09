@@ -1,8 +1,19 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Even;
+import hexlet.code.games.Calc;
+import hexlet.code.games.Gcd;
+import hexlet.code.games.Progression;
 
 public class App {
+    private static final int exit = 0;
+    private static final int great = 1;
+    private static final int even = 2;
+    private static final int calc = 3;
+    private static final int gcd = 4;
+    private static final int progression = 5;
+    private static final int prime = 6
 
     public static void main(String[] args) {
         // Greeting
@@ -30,13 +41,13 @@ public class App {
             }
 
             switch (x) {
-                case 1 -> Cli.greeting();
-                case 2 -> Even.startGame();
-                case 3 -> Calc.startGame();
-                case 4 -> Gcd.startGame();
-                case 5 -> Progression.startGame();
-                case 6 -> Prime.startGame();
-                case 0 -> {
+                case great -> Cli.greeting();
+                case even -> Even.startGame();
+                case calc -> Calc.startGame();
+                case gcd -> Gcd.startGame();
+                case progression -> Progression.startGame();
+                case prime -> Prime.startGame();
+                case exit -> {
                     System.exit(0);
                 }
                 default -> System.out.println("Choose correct number");
