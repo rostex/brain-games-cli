@@ -12,7 +12,7 @@ public class App {
         String s = "";
 
         // Context menu
-        while (!"2".equals(s)) {
+        while (true) {
             System.out.println("1 - Great");
             System.out.println("2 - Even");
             System.out.println("3 - Calc");
