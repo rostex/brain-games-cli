@@ -7,20 +7,20 @@ import hexlet.code.games.Gcd;
 import hexlet.code.games.Progression;
 
 public class App {
-    private static final int exit = 0;
-    private static final int great = 1;
-    private static final int even = 2;
-    private static final int calc = 3;
-    private static final int gcd = 4;
-    private static final int progression = 5;
-    private static final int prime = 6;
+    private static final int EXIT = 0;
+    private static final int GREAT = 1;
+    private static final int EVEN = 2;
+    private static final int CALC = 3;
+    private static final int GCD = 4;
+    private static final int PROGRESSION = 5;
+    private static final int PRIME = 6;
 
     public static void main(String[] args) {
         // Greeting
         System.out.println("Please enter the game number and press Enter.");
 
-        int x = 0;
-        String s = "";
+        int menuNumber = 0;
+        String input;
 
         // Context menu
         while (true) {
@@ -32,24 +32,22 @@ public class App {
             System.out.println("6 - Prime");
             System.out.println("0 - Exit");
             System.out.println("Your choice:");
-            s = Engine.scanner.next();
+            input = Engine.SCANNER.next();
 
             try {
-                x = Integer.parseInt(s);
+                menuNumber = Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 System.out.println("Incorrect value");
             }
 
-            switch (x) {
-                case great -> Cli.greeting();
-                case even -> Even.startGame();
-                case calc -> Calc.startGame();
-                case gcd -> Gcd.startGame();
-                case progression -> Progression.startGame();
-                case prime -> Prime.startGame();
-                case exit -> {
-                    System.exit(0);
-                }
+            switch (menuNumber) {
+                case GREAT -> Cli.greeting();
+                case EVEN -> Even.startGame();
+                case CALC -> Calc.startGame();
+                case GCD -> Gcd.startGame();
+                case PROGRESSION -> Progression.startGame();
+                case PRIME -> Prime.startGame();
+                case EXIT -> System.exit(0);
                 default -> System.out.println("Choose correct number");
             }
         }

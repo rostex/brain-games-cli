@@ -3,38 +3,41 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class Calc {
-    private static final String gameDiscription = "What is the result of the expression?";
-    private static final int min = 1;
-    private static final int max = 20;
-    private static final int minOperator = 1;
-    private static final int maxOperator = 3;
+    private static final String GAME_DISCRIPTION = "What is the result of the expression?";
+    private static final int MIN = 1;
+    private static final int MAX = 20;
+    private static final int MIN_OPERATOR = 1;
+    private static final int MAX_OPERATOR = 3;
+    private static final int PLUS = 1;
+    private static final int MINUS = 2;
+    private static final int MULTIPLY = 3;
 
     public static void startGame() {
-        String[][] gameData = new String[Engine.numberOfRounds][2];
+        String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
 
-        for (int i = 0; i < Engine.numberOfRounds; i++) {
-            int firstNumber = Engine.getRandomNumber(min, max);
-            int secondNumber = Engine.getRandomNumber(min, max);
-            int operator = Engine.getRandomNumber(minOperator, maxOperator);
+        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+            int firstNumber = Engine.getRandomNumber(MIN, MAX);
+            int secondNumber = Engine.getRandomNumber(MIN, MAX);
+            int operator = Engine.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
 
             switch (operator) {
 
-                case 1:
-                    gameData[i][0] = String.valueOf(firstNumber) + " + " + String.valueOf(secondNumber);
+                case PLUS:
+                    gameData[i][0] = firstNumber + " + " + secondNumber;
                     gameData[i][1] = String.valueOf(firstNumber + secondNumber);
                     break;
-                case 2:
-                    gameData[i][0] = String.valueOf(firstNumber) + " - " + String.valueOf(secondNumber);
+                case MINUS:
+                    gameData[i][0] = firstNumber + " - " + secondNumber;
                     gameData[i][1] = String.valueOf(firstNumber - secondNumber);
                     break;
-                case 3:
-                    gameData[i][0] = String.valueOf(firstNumber) + " * " + String.valueOf(secondNumber);
+                case MULTIPLY:
+                    gameData[i][0] = firstNumber + " * " + secondNumber;
                     gameData[i][1] = String.valueOf(firstNumber * secondNumber);
                     break;
                 default:
                     return;
             }
         }
-        Engine.runGame(gameDiscription, gameData);
+        Engine.runGame(GAME_DISCRIPTION, gameData);
     }
 }

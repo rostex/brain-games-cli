@@ -3,22 +3,22 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class Gcd {
-    private static final String gameDiscription = "Find the greatest common divisor of given numbers.";
-    private static final int min = 1;
-    private static final int max = 20;
+    private static final String GAME_DISCRIPTION = "Find the greatest common divisor of given numbers.";
+    private static final int MIN = 1;
+    private static final int MAX = 20;
 
     public static void startGame() {
-        String[][] gameData = new String[Engine.numberOfRounds][2];
+        String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
 
-        for (int i = 0; i < Engine.numberOfRounds; i++) {
+        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
 
-            int firstNumber = Engine.getRandomNumber(min, max);
-            int secondNumber = Engine.getRandomNumber(min, max);
+            int firstNumber = Engine.getRandomNumber(MIN, MAX);
+            int secondNumber = Engine.getRandomNumber(MIN, MAX);
 
-            gameData[i][0] = String.valueOf(firstNumber) + " " + String.valueOf(secondNumber); // Arrays with question
+            gameData[i][0] = firstNumber + " " + secondNumber; // Arrays with question
             gameData[i][1] = getGcd(firstNumber, secondNumber); // Arrays with answer
         }
-        Engine.runGame(gameDiscription, gameData);
+        Engine.runGame(GAME_DISCRIPTION, gameData);
     }
     // Get GCD method of Euclid algorithm
     public static String getGcd(int a, int b) {
