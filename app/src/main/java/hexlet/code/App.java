@@ -13,7 +13,7 @@ public class App {
     private static final int calc = 3;
     private static final int gcd = 4;
     private static final int progression = 5;
-    private static final int prime = 6
+    private static final int prime = 6;
 
     public static void main(String[] args) {
         // Greeting
