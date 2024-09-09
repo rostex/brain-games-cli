@@ -8,6 +8,7 @@ public class Progression {
     private static final String gameDiscription = "What number is missing in the progression?";
     private static final int min = 5;
     private static final int max = 10;
+    private static final int hiddenIndex = 1;
 
     public static void startGame() {
         String[][] gameData = new String[Engine.numberOfRounds][2];
@@ -18,7 +19,7 @@ public class Progression {
             int progressionLength = Engine.getRandomNumber(min, max);
             int startProgression = Engine.getRandomNumber(min, max);
             int rangeProgression = Engine.getRandomNumber(min, max);
-            int hiddenNumber = Engine.getRandomNumber(min, progressionLength - 1);
+            int hiddenNumber = Engine.getRandomNumber(hiddenIndex, progressionLength - 1);
 
             int[] progression = new int[progressionLength];
             progression[0] = startProgression;
