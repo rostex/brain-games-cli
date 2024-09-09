@@ -9,9 +9,10 @@ public class Prime {
 
     public static void startGame() {
         String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
+        String randomNumber = String.valueOf(Engine.getRandomNumber(MIN, MAX));
 
         for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
-            gameData[i][0] = String.valueOf(Engine.getRandomNumber(MIN, MAX));
+            gameData[i][0] = randomNumber;
             gameData[i][1] = Prime.isPrime(Integer.parseInt(gameData[i][0])) ? "yes" : "no";
         }
         Engine.runGame(GAME_DISCRIPTION, gameData);
