@@ -36,6 +36,5 @@ public class Progression {
             gameData[i][1] = String.valueOf(progression[hiddenNumber]); // Arrays with answer
         }
         Engine.runGame(gameDiscription, gameData);
-        System.exit(0);
     }
 }

@@ -24,7 +24,7 @@ public class Engine {
             } else {
                 System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + gameData[i][1] + "'.");
                 System.out.println("Let's try again, " + userName);
-                App.main(null);
+                System.exit(0);
             }
         }
         System.out.println("Congratulations, " + userName + "!");
