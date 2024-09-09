@@ -27,7 +27,7 @@ public class Engine {
                 App.main(null);
             }
         }
-        System.out.println("Congratulations, " + userName);
+        System.out.println("Congratulations, " + userName + "!");
     }
     // Get random number method
     public static int getRandomNumber(int min, int max) {
