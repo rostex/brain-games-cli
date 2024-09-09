@@ -1,5 +1,6 @@
 package hexlet.code;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Engine {
     public static int numberOfRounds = 3;
@@ -30,7 +31,7 @@ public class Engine {
     }
     // Get random number method
     public static int getRandomNumber(int min, int max) {
-        int randomNumber = min + (int) (Math.random() * max);
+        int randomNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
         return randomNumber;
     }
 }
