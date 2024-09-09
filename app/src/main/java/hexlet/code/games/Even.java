@@ -13,11 +13,10 @@ public class Even {
         for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
             gameData[i][0] = String.valueOf(Engine.getRandomNumber(MIN, MAX)); // Array with question
             gameData[i][1] = Even.isEven(Integer.parseInt(gameData[i][0])) ? "yes" : "no"; // Array with answer
-
         }
         Engine.runGame(GAME_DISCRIPTION, gameData);
     }
-    // IS even check method
+    // Is even check method
     public static boolean isEven(int number) {
         return number % 2 == 0;
     }

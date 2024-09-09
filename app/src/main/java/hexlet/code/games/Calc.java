@@ -19,24 +19,26 @@ public class Calc {
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
             int operator = Engine.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
+            String markOperator;
 
             switch (operator) {
 
                 case PLUS:
-                    gameData[i][0] = firstNumber + " + " + secondNumber;
+                    markOperator = " + ";
                     gameData[i][1] = String.valueOf(firstNumber + secondNumber);
                     break;
                 case MINUS:
-                    gameData[i][0] = firstNumber + " - " + secondNumber;
+                    markOperator = " - ";
                     gameData[i][1] = String.valueOf(firstNumber - secondNumber);
                     break;
                 case MULTIPLY:
-                    gameData[i][0] = firstNumber + " * " + secondNumber;
+                    markOperator = " * ";
                     gameData[i][1] = String.valueOf(firstNumber * secondNumber);
                     break;
                 default:
                     return;
             }
+            gameData[i][0] = firstNumber + markOperator + secondNumber;
         }
         Engine.runGame(GAME_DISCRIPTION, gameData);
     }
