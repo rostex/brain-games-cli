@@ -15,6 +15,7 @@ public class Prime {
             gameData[i][1] = Prime.isPrime(Integer.parseInt(gameData[i][0])) ? "yes" : "no";
         }
         Engine.runGame(gameDiscription, gameData);
+        System.exit(0);
     }
 
     public static boolean isPrime(int number) {

@@ -17,6 +17,7 @@ public class Gcd {
             gameData[i][1] = getGcd(firstNumber, secondNumber); // Arrays with answer
         }
         Engine.runGame(gameDiscription, gameData);
+        System.exit(0);
     }
     // Get GCD method of Euclid algorithm
     public static String getGcd(int a, int b) {

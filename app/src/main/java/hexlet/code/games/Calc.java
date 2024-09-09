@@ -32,5 +32,6 @@ public class Calc {
             }
         }
         Engine.runGame(gameDiscription, gameData);
+        System.exit(0);
     }
 }

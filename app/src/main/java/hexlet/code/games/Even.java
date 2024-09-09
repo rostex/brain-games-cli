@@ -14,6 +14,7 @@ public class Even {
 
         }
         Engine.runGame(gameDiscription, gameData);
+        System.exit(0);
     }
     // IS even check method
     public static boolean isEven(int number) {
