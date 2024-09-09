@@ -1,6 +1,4 @@
-package hexlet.code.games;
-
-import hexlet.code.Engine;
+package hexlet.code;
 
 public class Cli {
 
