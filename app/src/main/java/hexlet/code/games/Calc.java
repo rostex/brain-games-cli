@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Setup;
 
 public class Calc {
     private static final String GAME_DISCRIPTION = "What is the result of the expression?";
@@ -13,9 +14,9 @@ public class Calc {
     private static final int MULTIPLY = 3;
 
     public static void startGame() {
-        String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
-        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+        for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
             int operator = Engine.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
