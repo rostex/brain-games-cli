@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Setup;
 
 import java.util.Arrays;
 
@@ -11,9 +12,9 @@ public class Progression {
     private static final int HIDDEN_INDEX = 1;
 
     public static void startGame() {
-        String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
-        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+        for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             gameData[i][0] = "";
 
             int progressionLength = Engine.getRandomNumber(MIN, MAX);
