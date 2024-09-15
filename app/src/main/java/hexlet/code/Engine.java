@@ -3,21 +3,21 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Engine {
-    public static final int NUMBER_OF_ROUNDS = 3;
-    public static final Scanner SCANNER = new Scanner(System.in);
 
     public static void runGame(String gameDescription, String[][] gameData) {
         // Welcome message
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Welcome to the Brain Games!");
         System.out.println("May I have your name?");
-        String userName = SCANNER.next();
+        String userName = scanner.next();
         System.out.println("Hello, " + userName + "!");
         System.out.println(gameDescription);
         // Logic of question rounds
-        for (int i = 0; i < NUMBER_OF_ROUNDS; i++) {
+        for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             System.out.println("Question: " + gameData[i][0]);
             System.out.println("Answer: ");
-            String userAnswer = SCANNER.next();
+            String userAnswer = scanner.next();
 
             if (userAnswer.equals(gameData[i][1])) {
                 System.out.println("Correct!");
@@ -30,6 +30,7 @@ public class Engine {
             }
         }
         System.out.println("Congratulations, " + userName + "!");
+        scanner.close();
         System.exit(0);
     }
     // Get random number method
