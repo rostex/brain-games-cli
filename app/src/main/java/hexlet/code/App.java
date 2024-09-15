@@ -6,14 +6,9 @@ import hexlet.code.games.Calc;
 import hexlet.code.games.Gcd;
 import hexlet.code.games.Progression;
 
+import java.util.Scanner;
+
 public class App {
-    private static final int EXIT = 0;
-    private static final int GREAT = 1;
-    private static final int EVEN = 2;
-    private static final int CALC = 3;
-    private static final int GCD = 4;
-    private static final int PROGRESSION = 5;
-    private static final int PRIME = 6;
 
     public static void main(String[] args) {
         // Greeting
@@ -21,9 +16,10 @@ public class App {
 
         int menuNumber = 0;
         String input;
+        Scanner scanner = new Scanner(System.in);
 
         // Context menu
-        while (true) {
+        while (!String.valueOf(Setup.TOTAL_MENU_NUMBERS).equals(menuNumber)) {
             System.out.println("1 - Great");
             System.out.println("2 - Even");
             System.out.println("3 - Calc");
@@ -32,7 +28,7 @@ public class App {
             System.out.println("6 - Prime");
             System.out.println("0 - Exit");
             System.out.println("Your choice:");
-            input = Engine.SCANNER.next();
+            input = scanner.next();
 
             try {
                 menuNumber = Integer.parseInt(input);
@@ -41,15 +37,16 @@ public class App {
             }
 
             switch (menuNumber) {
-                case GREAT -> Cli.greeting();
-                case EVEN -> Even.startGame();
-                case CALC -> Calc.startGame();
-                case GCD -> Gcd.startGame();
-                case PROGRESSION -> Progression.startGame();
-                case PRIME -> Prime.startGame();
-                case EXIT -> System.exit(0);
+                case Setup.GREAT -> Cli.greeting();
+                case Setup.EVEN -> Even.startGame();
+                case Setup.CALC -> Calc.startGame();
+                case Setup.GCD -> Gcd.startGame();
+                case Setup.PROGRESSION -> Progression.startGame();
+                case Setup.PRIME -> Prime.startGame();
+                case Setup.EXIT -> System.exit(0);
                 default -> System.out.println("Choose correct number");
             }
         }
+        scanner.close();
     }
 }
