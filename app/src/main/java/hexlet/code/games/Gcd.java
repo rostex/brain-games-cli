@@ -1,6 +1,9 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Setup;
+
+import java.util.Set;
 
 public class Gcd {
     private static final String GAME_DISCRIPTION = "Find the greatest common divisor of given numbers.";
@@ -8,9 +11,9 @@ public class Gcd {
     private static final int MAX = 20;
 
     public static void startGame() {
-        String[][] gameData = new String[Engine.NUMBER_OF_ROUNDS][2];
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
-        for (int i = 0; i < Engine.NUMBER_OF_ROUNDS; i++) {
+        for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
 
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
@@ -21,7 +24,7 @@ public class Gcd {
         Engine.runGame(GAME_DISCRIPTION, gameData);
     }
     // Get GCD method of Euclid algorithm
-    public static String getGcd(int a, int b) {
+    private static String getGcd(int a, int b) {
         if (b == 0) {
             return String.valueOf(a);
         }
