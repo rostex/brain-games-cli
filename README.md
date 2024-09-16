@@ -1,11 +1,11 @@
 # Brain Games
 This project is a set of five console games:
 
-Even game - * *Definition of an even number* *  
-Calc game - * *Arithmetic expressions to be evaluated* *  
-GCD game - * *Finding the Greatest Common Divisor* *  
-Progression game - * *Search for missing number in a sequence of numbers* *  
-Prime game - * *Definition of a prime number* *   
+Even game - *Definition of an even number*  
+Calc game - *Arithmetic expressions*  
+GCD game - *Finding the Greatest Common Divisor*  
+Progression game - *Search for missing number in a sequence of numbers*  
+Prime game - *Definition of a prime number*  
   
 Each game asks questions that need to be answered correctly. After three correct answers, the game is considered to be completed. Wrong answers end the game.  
 ### Hexlet tests and linter status:
