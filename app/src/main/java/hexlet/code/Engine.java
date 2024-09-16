@@ -35,6 +35,6 @@ public class Engine {
     }
     // Get random number method
     public static int getRandomNumber(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+        return min + (int)(Math.random() * ((max - min) + 1));
     }
 }
