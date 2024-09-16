@@ -12,10 +12,14 @@ public class Calc {
     private static final int PLUS = 1;
     private static final int MINUS = 2;
     private static final int MULTIPLY = 3;
+    private static String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
     public static void startGame() {
-        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
+        setGameData();
+        Engine.runGame(GAME_DISCRIPTION, gameData);
+    }
 
+    private static void setGameData() {
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
@@ -41,6 +45,5 @@ public class Calc {
             }
             gameData[i][0] = firstNumber + markOperator + secondNumber;
         }
-        Engine.runGame(GAME_DISCRIPTION, gameData);
     }
 }

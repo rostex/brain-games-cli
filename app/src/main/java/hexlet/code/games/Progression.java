@@ -10,10 +10,14 @@ public class Progression {
     private static final int MIN = 5;
     private static final int MAX = 10;
     private static final int HIDDEN_INDEX = 1;
+    private static String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
     public static void startGame() {
-        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
+        setGameData();
+        Engine.runGame(GAME_DISCRIPTION, gameData);
+    }
 
+    public static void setGameData() {
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             gameData[i][0] = "";
 
@@ -39,6 +43,5 @@ public class Progression {
             gameData[i][0] = Arrays.toString(strProgression).replaceAll("[\\[\\],]", ""); // Arrays with question
             gameData[i][1] = String.valueOf(progression[hiddenNumber]); // Arrays with answer
         }
-        Engine.runGame(GAME_DISCRIPTION, gameData);
     }
 }
