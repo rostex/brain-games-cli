@@ -25,6 +25,7 @@ public class Engine {
                         + "' is wrong answer ;(. Correct answer was '"
                         + gameData[i][1] + "'.");
                 System.out.println("Let's try again, " + userName + "!");
+                scanner.close();
                 System.exit(0);
             }
         }
