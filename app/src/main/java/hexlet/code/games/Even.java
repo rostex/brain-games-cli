@@ -10,15 +10,16 @@ public class Even {
     private static String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
     public static void startGame() {
-        setGameData();
-        Engine.runGame(GAME_DISCRIPTION, gameData);
+        Engine.runGame(GAME_DISCRIPTION, generateGameData());
     }
 
-    private static void setGameData() {
+    private static String[][] generateGameData() {
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             gameData[i][0] = String.valueOf(Engine.getRandomNumber(MIN, MAX)); // Array with question
             gameData[i][1] = Even.isEven(Integer.parseInt(gameData[i][0])) ? "yes" : "no"; // Array with answer
         }
+        return gameData;
     }
     // Is even check method
     private static boolean isEven(int number) {

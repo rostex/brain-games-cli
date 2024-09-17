@@ -10,11 +10,11 @@ public class Gcd {
     private static String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
     public static void startGame() {
-        setGameData();
-        Engine.runGame(GAME_DISCRIPTION, gameData);
+        Engine.runGame(GAME_DISCRIPTION, generateGameData());
     }
 
-    private static void setGameData() {
+    private static String[][] generateGameData() {
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
@@ -22,6 +22,7 @@ public class Gcd {
             gameData[i][0] = firstNumber + " " + secondNumber; // Arrays with question
             gameData[i][1] = getGcd(firstNumber, secondNumber); // Arrays with answer
         }
+        return gameData;
     }
     // Get GCD method of Euclid algorithm
     private static String getGcd(int a, int b) {

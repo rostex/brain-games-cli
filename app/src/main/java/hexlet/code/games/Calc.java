@@ -12,19 +12,18 @@ public class Calc {
     private static final int PLUS = 1;
     private static final int MINUS = 2;
     private static final int MULTIPLY = 3;
-    private static String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
 
     public static void startGame() {
-        setGameData();
-        Engine.runGame(GAME_DISCRIPTION, gameData);
+        Engine.runGame(GAME_DISCRIPTION, generateGameData());
     }
 
-    private static void setGameData() {
+    private static String[][] generateGameData() {
+        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             int firstNumber = Engine.getRandomNumber(MIN, MAX);
             int secondNumber = Engine.getRandomNumber(MIN, MAX);
             int operator = Engine.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
-            String markOperator;
+            String markOperator = "";
 
             switch (operator) {
 
@@ -41,9 +40,10 @@ public class Calc {
                     gameData[i][1] = String.valueOf(firstNumber * secondNumber);
                     break;
                 default:
-                    return;
+                    break;
             }
             gameData[i][0] = firstNumber + markOperator + secondNumber;
         }
+        return gameData;
     }
 }
