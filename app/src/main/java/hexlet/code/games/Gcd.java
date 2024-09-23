@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.MathUtils;
 import hexlet.code.Setup;
 
 public class Gcd {
@@ -15,19 +16,12 @@ public class Gcd {
     private static String[][] generateGameData() {
         String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
-            int firstNumber = Engine.getRandomNumber(MIN, MAX);
-            int secondNumber = Engine.getRandomNumber(MIN, MAX);
+            int firstNumber = MathUtils.getRandomNumber(MIN, MAX);
+            int secondNumber = MathUtils.getRandomNumber(MIN, MAX);
 
             gameData[i][0] = firstNumber + " " + secondNumber; // Arrays with question
-            gameData[i][1] = getGcd(firstNumber, secondNumber); // Arrays with answer
+            gameData[i][1] = MathUtils.getGcd(firstNumber, secondNumber); // Arrays with answer
         }
         return gameData;
-    }
-    // Get GCD method of Euclid algorithm
-    private static String getGcd(int a, int b) {
-        if (b == 0) {
-            return String.valueOf(a);
-        }
-        return getGcd(b, a % b);
     }
 }
