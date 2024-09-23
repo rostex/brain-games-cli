@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.MathUtils;
 import hexlet.code.Setup;
 
 public class Calc {
@@ -20,9 +21,9 @@ public class Calc {
     private static String[][] generateGameData() {
         String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
-            int firstNumber = Engine.getRandomNumber(MIN, MAX);
-            int secondNumber = Engine.getRandomNumber(MIN, MAX);
-            int operator = Engine.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
+            int firstNumber = MathUtils.getRandomNumber(MIN, MAX);
+            int secondNumber = MathUtils.getRandomNumber(MIN, MAX);
+            int operator = MathUtils.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
             String markOperator = "";
 
             switch (operator) {
