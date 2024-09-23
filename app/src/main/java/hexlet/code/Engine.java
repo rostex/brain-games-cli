@@ -33,8 +33,4 @@ public class Engine {
         scanner.close();
         System.exit(0);
     }
-    // Get random number method
-    public static int getRandomNumber(int min, int max) {
-        return min + (int) (Math.random() * ((max - min) + 1));
-    }
 }

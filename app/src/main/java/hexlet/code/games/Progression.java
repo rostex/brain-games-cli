@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.MathUtils;
 import hexlet.code.Setup;
 
 import java.util.Arrays;
@@ -15,15 +16,15 @@ public class Progression {
         Engine.runGame(GAME_DISCRIPTION, generateGameData());
     }
 
-    public static String[][] generateGameData() {
+    private static String[][] generateGameData() {
         String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
         for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
             gameData[i][0] = "";
 
-            int progressionLength = Engine.getRandomNumber(MIN, MAX);
-            int startProgression = Engine.getRandomNumber(MIN, MAX);
-            int rangeProgression = Engine.getRandomNumber(MIN, MAX);
-            int hiddenNumber = Engine.getRandomNumber(HIDDEN_INDEX, progressionLength - 1);
+            int progressionLength = MathUtils.getRandomNumber(MIN, MAX);
+            int startProgression = MathUtils.getRandomNumber(MIN, MAX);
+            int rangeProgression = MathUtils.getRandomNumber(MIN, MAX);
+            int hiddenNumber = MathUtils.getRandomNumber(HIDDEN_INDEX, progressionLength - 1);
 
             int[] progression = new int[progressionLength];
             progression[0] = startProgression;
