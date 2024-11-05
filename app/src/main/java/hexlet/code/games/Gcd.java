@@ -1,7 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-import hexlet.code.MathUtils;
+import hexlet.code.utils.MathUtils;
 import hexlet.code.Setup;
 
 public class Gcd {
