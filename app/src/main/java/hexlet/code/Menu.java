@@ -3,6 +3,8 @@ package hexlet.code;
 import hexlet.code.games.*;
 import hexlet.code.games.Games;
 
+import static hexlet.code.Setup.SCANNER;
+
 public class Menu {
     public static void getGamesMenu() {
         System.out.println("Please enter the game number and press Enter.");
@@ -15,7 +17,7 @@ public class Menu {
 
         while (true) {
             try {
-                int choice = Integer.parseInt(Setup.SCANNER.next());
+                int choice = Integer.parseInt(SCANNER.next());
                 Games game = Games.fromNumber(choice);
 
                 switch (game) {
