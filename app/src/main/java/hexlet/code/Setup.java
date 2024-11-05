@@ -1,16 +1,9 @@
 package hexlet.code;
 
-public class Setup {
-    // Context menu constants setups
-    public static final int TOTAL_MENU_NUMBERS = 6;
-    public static final int EXIT = 0;
-    public static final int GREAT = 1;
-    public static final int EVEN = 2;
-    public static final int CALC = 3;
-    public static final int GCD = 4;
-    public static final int PROGRESSION = 5;
-    public static final int PRIME = 6;
+import java.util.Scanner;
 
-    // Engine constants setups
+public class Setup {
     public static final int NUMBER_OF_ROUNDS = 3;
+    public static final Scanner SCANNER = new Scanner(System.in);
+    public static User user = new User();
 }
