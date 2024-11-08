@@ -19,5 +19,4 @@ public class Player {
         player.setName(SCANNER.next());
 
     }
-
 }

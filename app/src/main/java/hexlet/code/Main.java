@@ -16,5 +16,4 @@ public class Main {
         Player.selectName();
         getMainMenu();
     }
-
 }

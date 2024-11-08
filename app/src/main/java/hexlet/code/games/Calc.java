@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calc {
-    private static final String GAME_DISCRIPTION = "What is the result of the expression?";
+    private static final String GAME_DESCRIPTION = "What is the result of the expression?";
 
     public static void startGame() {
-        Engine.runGame(GAME_DISCRIPTION, generateGameData());
+        Engine.runGame(GAME_DESCRIPTION, generateGameData());
     }
 
     private static List<GameData> generateGameData() {

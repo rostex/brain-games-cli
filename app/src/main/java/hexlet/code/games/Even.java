@@ -25,5 +25,3 @@ public class Even {
         return gameData;
     }
 }
-
-

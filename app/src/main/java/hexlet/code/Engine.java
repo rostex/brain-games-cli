@@ -25,7 +25,7 @@ public class Engine {
         System.out.println("Hello, " + playerName + "!");
         System.out.println(gameDescription);
 
-        for (int i = 0; i < Difficulty.numberOfRounds ; i++) {
+        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
             GameData roundData = gameData.get(i);
 
             System.out.println("Question: " + roundData.getQuestion());
@@ -78,7 +78,7 @@ public class Engine {
                 file.createNewFile();
             }
 
-                ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
             stats.merge(playerName, scoreChange, Integer::sum);
@@ -95,12 +95,14 @@ public class Engine {
 
     public static void getStatistics() throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        Map<String, Integer> stats = mapper.readValue(new File("app/src/main/resources/PlayersStat.yml"), new TypeReference<Map<String, Integer>>() {});
+        Map<String, Integer> stats = mapper.readValue(new File("app/src/main/resources/PlayersStat.yml"),
+                new TypeReference<Map<String, Integer>>() {
+                });
 
         System.out.println("Top 5 players:");
         List<Map.Entry<String, Integer>> sortedStats = stats.entrySet()
                 .stream()
-                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))  // Сортировка по убыванию очков
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                 .collect(Collectors.toList());
 
         int positionNumber = 1;
@@ -115,10 +117,12 @@ public class Engine {
     }
 
     private static Map<String, Integer> readStatsFromFile(File file, ObjectMapper mapper) throws IOException {
-        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {});
+        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {
+        });
     }
 
-    private static void writeStatsToFile(File file, ObjectMapper mapper, Map<String, Integer> stats) throws IOException {
+    private static void writeStatsToFile(File file, ObjectMapper mapper,
+                                         Map<String, Integer> stats) throws IOException {
         mapper.writeValue(file, stats);
     }
 }

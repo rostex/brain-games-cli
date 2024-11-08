@@ -20,9 +20,12 @@ public class Progression {
         List<GameData> gameData = new ArrayList<>();
 
         for (int i = 0; i < Difficulty.numberOfRounds; i++) {
-            int progressionLength = MathUtils.getRandomNumber(Difficulty.minProgressionLength, Difficulty.maxProgressionLength);
-            int startProgression = MathUtils.getRandomNumber(Difficulty.minProgressionLength, Difficulty.maxProgressionLength);
-            int rangeProgression = MathUtils.getRandomNumber(Difficulty.minProgressionStep, Difficulty.maxProgressionStep);
+            int progressionLength = MathUtils.getRandomNumber(Difficulty.minProgressionLength,
+                    Difficulty.maxProgressionLength);
+            int startProgression = MathUtils.getRandomNumber(Difficulty.minProgressionLength,
+                    Difficulty.maxProgressionLength);
+            int rangeProgression = MathUtils.getRandomNumber(Difficulty.minProgressionStep,
+                    Difficulty.maxProgressionStep);
             int hiddenIndex = MathUtils.getRandomNumber(HIDDEN_INDEX_MIN, progressionLength - 1);
 
             int[] progression = new int[progressionLength];
