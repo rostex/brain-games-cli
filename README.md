@@ -1,17 +1,17 @@
 # Brain Games
 This project is a set of five console games:
 
-- Even game - Definition of an even number  
-- Calc game - Arithmetic expressions  
-- GCD game - Finding the Greatest Common Divisor  
-- Progression game - Search for missing number in a sequence of numbers  
-- Prime game - Definition of a prime number  
+- **Even game** – Definition of an even number  
+- **Calc game** – Arithmetic expressions  
+- **GCD game** – Finding the Greatest Common Divisor  
+- **Progression game** – Search for missing number in a sequence of numbers  
+- **Prime game** – Definition of a prime number  
   
 ## Game Features:
-- Levels of Difficulty – Choose from three difficulty levels: Easy (default), Medium, and Hard. The difficulty affects the complexity of the questions.
-- Scoring System – Earn points for correct answers. If you provide an incorrect answer, points will be subtracted. After three correct answers, the game is considered completed.
-- Statistics – View the statistics of the top players, including the total score of the best players.
-- Settings – You can change the player’s name and select the difficulty level through the Settings menu. The default difficulty is Easy.
+- **Levels of Difficulty** – Choose from three difficulty levels: Easy (default), Medium, and Hard. The difficulty affects the complexity of the questions.
+- **Scoring System** – Earn points for correct answers. If you provide an incorrect answer, points will be subtracted. After blocks of answers, the game is considered completed.
+- **Statistics** – View the statistics of the top players (best local total score).
+- **Settings** – You can change the player’s name and select the difficulty level through the Settings menu. The default difficulty is Easy.
 
 Each game asks a series of questions that need to be answered correctly. After three correct answers, the game is considered completed. Wrong answers will end the game and reduce the total score.
 
