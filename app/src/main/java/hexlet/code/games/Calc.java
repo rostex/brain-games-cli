@@ -1,50 +1,66 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
-import hexlet.code.Setup;
+import hexlet.code.core.Difficulty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calc {
     private static final String GAME_DISCRIPTION = "What is the result of the expression?";
-    private static final int MIN = 1;
-    private static final int MAX = 20;
-    private static final int MIN_OPERATOR = 1;
-    private static final int MAX_OPERATOR = 3;
-    private static final int PLUS = 1;
-    private static final int MINUS = 2;
-    private static final int MULTIPLY = 3;
 
     public static void startGame() {
         Engine.runGame(GAME_DISCRIPTION, generateGameData());
     }
 
-    private static String[][] generateGameData() {
-        String[][] gameData = new String[Setup.NUMBER_OF_ROUNDS][2];
-        for (int i = 0; i < Setup.NUMBER_OF_ROUNDS; i++) {
-            int firstNumber = MathUtils.getRandomNumber(MIN, MAX);
-            int secondNumber = MathUtils.getRandomNumber(MIN, MAX);
-            int operator = MathUtils.getRandomNumber(MIN_OPERATOR, MAX_OPERATOR);
-            String markOperator = "";
+    private static List<GameData> generateGameData() {
+        List<GameData> gameData = new ArrayList<>();
 
-            switch (operator) {
+        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
+            int firstNumber = MathUtils.getRandomNumber(Difficulty.minNumber, Difficulty.maxNumber);
+            int secondNumber = MathUtils.getRandomNumber(Difficulty.minNumber, Difficulty.maxNumber);
 
-                case PLUS:
-                    markOperator = " + ";
-                    gameData[i][1] = String.valueOf(firstNumber + secondNumber);
-                    break;
-                case MINUS:
-                    markOperator = " - ";
-                    gameData[i][1] = String.valueOf(firstNumber - secondNumber);
-                    break;
-                case MULTIPLY:
-                    markOperator = " * ";
-                    gameData[i][1] = String.valueOf(firstNumber * secondNumber);
-                    break;
-                default:
-                    break;
-            }
-            gameData[i][0] = firstNumber + markOperator + secondNumber;
+            Operator operator = Operator.getRandomOperator();
+
+            String question = firstNumber + " " + operator.getSymbol() + " " + secondNumber;
+            String rightAnswer = String.valueOf(operator.calculate(firstNumber, secondNumber));
+
+            gameData.add(new GameData(question, rightAnswer));
         }
         return gameData;
+    }
+
+    private enum Operator {
+        PLUS("+", (a, b) -> a + b),
+        MINUS("-", (a, b) -> a - b),
+        MULTIPLY("*", (a, b) -> a * b);
+
+        private final String symbol;
+        private final Operation operation;
+
+        Operator(String symbol, Operation operation) {
+            this.symbol = symbol;
+            this.operation = operation;
+        }
+
+        public String getSymbol() {
+            return symbol;
+        }
+
+        public int calculate(int a, int b) {
+            return operation.apply(a, b);
+        }
+
+        @FunctionalInterface
+        private interface Operation {
+            int apply(int a, int b);
+        }
+
+        public static Operator getRandomOperator() {
+            Operator[] operators = values();
+            return operators[(int) (Math.random() * operators.length)];
+        }
     }
 }
