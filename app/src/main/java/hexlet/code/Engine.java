@@ -6,9 +6,11 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import hexlet.code.core.Difficulty;
 import hexlet.code.core.GameData;
 import hexlet.code.menu.Menu;
+import hexlet.code.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -49,7 +51,7 @@ public class Engine {
 
     public static void getTotalScore() {
         try {
-            File file = new File("app/src/main/resources/PlayersStat.yml");
+            File file = GameData.gameDataFile;
 
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
@@ -65,21 +67,15 @@ public class Engine {
         String playerName = player.getName();
         int scoreChange = isAdd ? value : -value;
 
-        Main.totalScore += scoreChange;
-
         try {
-            File file = new File("app/src/main/resources/PlayersStat.yml");
-
-            if (!file.exists()) {
-                File parentDir = new File(file.getParent());
-                if (!parentDir.exists()) {
-                    parentDir.mkdirs();
-                }
-                file.createNewFile();
-            }
+            File file = GameData.gameDataFile;
 
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
+
+            if (!stats.containsKey(playerName)) {
+                stats.put(playerName, 0);
+            }
 
             stats.merge(playerName, scoreChange, Integer::sum);
 
@@ -95,9 +91,21 @@ public class Engine {
 
     public static void getStatistics() throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        Map<String, Integer> stats = mapper.readValue(new File("app/src/main/resources/PlayersStat.yml"),
+        File file = GameData.gameDataFile;
+
+        if (isFileEmpty(file)) {
+            System.out.println("Top players are not determined yet.");
+            return;
+        }
+
+        Map<String, Integer> stats = mapper.readValue(file,
                 new TypeReference<Map<String, Integer>>() {
                 });
+
+        if (stats.isEmpty()) {
+            System.out.println("Top players are not determined yet.");
+            return;
+        }
 
         System.out.println("Top 5 players:");
         List<Map.Entry<String, Integer>> sortedStats = stats.entrySet()
@@ -106,7 +114,7 @@ public class Engine {
                 .collect(Collectors.toList());
 
         int positionNumber = 1;
-        for (var stat : sortedStats) {
+        for (Map.Entry<String, Integer> stat : sortedStats) {
             if (positionNumber > 5) {
                 break;
             }
@@ -116,13 +124,19 @@ public class Engine {
         }
     }
 
-    private static Map<String, Integer> readStatsFromFile(File file, ObjectMapper mapper) throws IOException {
-        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {
-        });
+    public static Map<String, Integer> readStatsFromFile(File file, ObjectMapper mapper) throws IOException {
+        if (file.length() == 0) {
+            return new HashMap<>();
+        }
+        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {});
     }
 
     private static void writeStatsToFile(File file, ObjectMapper mapper,
                                          Map<String, Integer> stats) throws IOException {
         mapper.writeValue(file, stats);
+    }
+
+    private static boolean isFileEmpty(File file) {
+        return !file.exists() || file.length() == 0;
     }
 }
