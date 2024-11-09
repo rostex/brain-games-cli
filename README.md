@@ -21,7 +21,6 @@ Each game asks a series of questions that need to be answered correctly. After t
 - [How to Run the Game](#how-to-run-the-game)
 - [Saving Player Data](#saving-player-data)
 - [How to Change Settings](#how-to-change-settings)
-- [File Locations](#file-locations)
 - [Game demonstration](#game-demonstration)
 
 
@@ -84,13 +83,6 @@ You can change the following settings during the game:
   - Medium
   - Hard
 These settings will affect the complexity of the questions you will encounter during the games.
-
-### File Locations
-- Game Files (YAML data) are stored in the following default locations:
-  - Windows: `C:\Users\<YourUsername>\AppData\Roaming\Brain Games CLI\PlayersStat.yml`
-  - macOS: `/Users/<YourUsername>/Library/Application Support/Brain Games CLI/PlayersStat.yml`
-  - Linux: `/home/<YourUsername>/.Brain Games CLI/PlayersStat.yml`
-
 
 ### Code status:
 <!-- Due to the development of additional features, the check from Hexlet is not working anymore.
