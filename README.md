@@ -30,11 +30,11 @@ Each game asks a series of questions that need to be answered correctly. After t
 
 1. **Download the JAR File**
    
-   First, you need to download the compiled .jar file. You can find it in the [Releases](https://github.com/rostex/brain-games-cli/releases) section of the GitHub repository or in the provided download link.
+   First, you need to download the compiled .jar file. You can find it in the [Releases](https://github.com/rostex/brain-games-cli/releases) section of the GitHub repository.
 
 3. **Install Java**
 
-   Ensure that you have **Java 18** or later installed on your system. You can check if Java is installed by running the following command in your terminal or command prompt:
+   Ensure that you have **Java 21** or later installed on your system. You can check if Java is installed by running the following command in your terminal or command prompt:
 
 ```bash
 java -version
@@ -46,7 +46,7 @@ If Java is not installed, download and install the latest version from the [offi
    Once you have the `.jar` file and Java installed, navigate to the directory where the `.jar` file is located. Open your terminal or command prompt and run the following command:
 
 ```bash
-java -jar BrainGames.jar
+java -jar brain-games-cli.jar
 ```
 This will start the game and you can follow the instructions on the screen to play the games.
 
@@ -80,7 +80,7 @@ You can change the following settings during the game:
 
 - Player Name – Change your name in the settings menu.
 - Difficulty Level – Choose from the following difficulty levels:
-  -Easy (default)
+  - Easy (default)
   - Medium
   - Hard
 These settings will affect the complexity of the questions you will encounter during the games.
