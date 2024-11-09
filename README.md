@@ -26,33 +26,33 @@ Each game asks a series of questions that need to be answered correctly. After t
 
 
 ## How to Run the Game
-### Prerequisites:
-Before running the game, you need to have the following installed on your machine:
-- Java 17 or later
-- A terminal/command line interface (Command Prompt, PowerShell, Terminal, etc.)
+### To play Brain Games, follow these steps:
 
-### Installation Instructions:
-1. Clone the repository or download the project files to your machine.
+1. **Download the JAR File**
+   
+   First, you need to download the compiled .jar file. You can find it in the [Releases](https://github.com/rostex/brain-games-cli/releases) section of the GitHub repository or in the provided download link.
 
-```
-git clone https://github.com/your-username/brain-games.git
-cd brain-games
-```
+3. **Install Java**
 
-2. Compile the project using javac:
-If you're using a simple command-line environment:
+   Ensure that you have **Java 18** or later installed on your system. You can check if Java is installed by running the following command in your terminal or command prompt:
 
+```bash
+java -version
 ```
-javac -d bin src/**/*.java
-```
+If Java is not installed, download and install the latest version from the [official Java website](https://www.oracle.com/java/technologies/javase-downloads.html).
 
-3. Run the game using java:
-Once the project is compiled, you can run the game with the following command:
+3. **Run the JAR File**
 
+   Once you have the `.jar` file and Java installed, navigate to the directory where the `.jar` file is located. Open your terminal or command prompt and run the following command:
+
+```bash
+java -jar BrainGames.jar
 ```
-java -cp bin hexlet.code.Main
-This will start the main menu of the game where you can choose which game to play, adjust settings, and view statistics.
-```
+This will start the game and you can follow the instructions on the screen to play the games.
+
+4. **Enjoy the Game!**
+
+   Follow the on-screen prompts to choose a game, set your difficulty level, and start playing!
 
 ## Saving Player Data
 ### Where the Data is Stored
