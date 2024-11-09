@@ -22,6 +22,7 @@ Each game asks a series of questions that need to be answered correctly. After t
 - [Saving Player Data](#saving-player-data)
 - [How to Change Settings](#how-to-change-settings)
 - [File Locations](#file-locations)
+- [Game demonstration](#game-demonstration)
 
 
 ## How to Run the Game
@@ -97,6 +98,7 @@ These settings will affect the complexity of the questions you will encounter du
 -->
 [![Maintainability](https://api.codeclimate.com/v1/badges/7facfe9189a9d5598939/maintainability)](https://codeclimate.com/github/rostex/java-project-61/maintainability)
 
+## Game demonstration
 #### Even game demo:
 [![asciicast](https://asciinema.org/a/yRzHJFVLpt6FWe3Wg8S8AbucC.svg)](https://asciinema.org/a/yRzHJFVLpt6FWe3Wg8S8AbucC)
 
