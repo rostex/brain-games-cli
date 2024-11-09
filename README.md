@@ -99,6 +99,9 @@ These settings will affect the complexity of the questions you will encounter du
 [![Maintainability](https://api.codeclimate.com/v1/badges/7facfe9189a9d5598939/maintainability)](https://codeclimate.com/github/rostex/java-project-61/maintainability)
 
 ## Game demonstration
+
+[![asciicast](https://asciinema.org/a/KEyKhPgEbZdx5aLj05GJAuamy.svg)](https://asciinema.org/a/KEyKhPgEbZdx5aLj05GJAuamy)
+<!--
 #### Even game demo:
 [![asciicast](https://asciinema.org/a/yRzHJFVLpt6FWe3Wg8S8AbucC.svg)](https://asciinema.org/a/yRzHJFVLpt6FWe3Wg8S8AbucC)
 
@@ -113,3 +116,4 @@ These settings will affect the complexity of the questions you will encounter du
 
 #### Prime game demo:
 [![asciicast](https://asciinema.org/a/cgNbPjbWeb2TycOnWRnuIHFnk.svg)](https://asciinema.org/a/cgNbPjbWeb2TycOnWRnuIHFnk)
+-->
