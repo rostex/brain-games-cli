@@ -1,6 +1,5 @@
 package hexlet.code.menu;
 
-import hexlet.code.core.Difficulty;
 import hexlet.code.Engine;
 import hexlet.code.Main;
 import hexlet.code.core.Player;
@@ -10,7 +9,7 @@ import java.io.IOException;
 
 public class Menu {
     public static void getMainMenu() {
-        System.out.println(Difficulty.difficultyValue + " difficulty level set");
+        System.out.println(Engine.difficulty.getTitle() + " difficulty level set");
         System.out.println("Please enter the game number and press Enter.");
 
         for (MenuItem game : MenuItem.values()) {
@@ -25,11 +24,11 @@ public class Menu {
                 MenuItem game = MenuItem.fromNumber(choice);
 
                 switch (game) {
-                    case EVEN -> Even.startGame();
-                    case CALC -> Calc.startGame();
-                    case GCD -> Gcd.startGame();
-                    case PROGRESSION -> Progression.startGame();
-                    case PRIME -> Prime.startGame();
+                    case EVEN -> Even.getInstance().startGame();
+                    case CALC -> Calc.getInstance().startGame();
+                    case GCD -> Gcd.getInstance().startGame();
+                    case PROGRESSION -> Progression.getInstance().startGame();
+                    case PRIME -> Prime.getInstance().startGame();
                     case SETTINGS -> getSettingsMenu();
                     case STATISTICS -> {
                         Engine.getStatistics();
@@ -67,7 +66,7 @@ public class Menu {
                         return;
                     }
                     case 2 -> {
-                        Difficulty.selectDifficulty();
+                        Engine.selectDifficulty();
                         Menu.getMainMenu();
                         return;
                     }

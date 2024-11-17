@@ -2,88 +2,75 @@ package hexlet.code.core;
 
 import static hexlet.code.Main.SCANNER;
 
-public class Difficulty {
-    public static DifficultyValue difficultyValue = DifficultyValue.EASY;
+public enum Difficulty {
+    EASY("Easy", 3, 1, 1, 10, 5, 10, 1, 5),
+    NORMAL("Normal", 5, 2, 1, 20, 6, 10, 5, 12),
+    HARD("Hard", 7, 3, 1, 50, 3, 6, 12, 18);
 
-    public static int numberOfRounds = 3;
-    public static int scoreValue = 1;
-    public static int minNumber = 1;
-    public static int maxNumber = 10;
+    private String title;
 
-    public static int minProgressionLength = 5;
-    public static int maxProgressionLength = 10;
-    public static int minProgressionStep = 1;
-    public static int maxProgressionStep = 5;
+    private int numberOfRounds;
+    private int scoreValue;
+    private int minNumber;
+    private int maxNumber;
 
-    public static void setDifficulty(DifficultyValue value) {
-        difficultyValue = value;
-        switch (difficultyValue) {
-            case EASY:
-                numberOfRounds = 3;
-                scoreValue = 1;
-                minNumber = 1;
-                maxNumber = 10;
-                minProgressionLength = 8;
-                maxProgressionLength = 12;
-                minProgressionStep = 1;
-                maxProgressionStep = 5;
-                break;
-            case NORMAL:
-                numberOfRounds = 5;
-                scoreValue = 2;
-                minNumber = 1;
-                maxNumber = 20;
-                minProgressionLength = 6;
-                maxProgressionLength = 10;
-                minProgressionStep = 5;
-                maxProgressionStep = 12;
-                break;
-            case HARD:
-                numberOfRounds = 7;
-                scoreValue = 3;
-                minNumber = 1;
-                maxNumber = 50;
-                minProgressionLength = 3;
-                maxProgressionLength = 6;
-                minProgressionStep = 12;
-                maxProgressionStep = 18;
-                break;
-        }
+    private int minProgressionLength;
+    private int maxProgressionLength;
+    private int minProgressionStep;
+    private int maxProgressionStep;
+
+    Difficulty(String title, int numberOfRounds, int scoreValue, int minNumber, int maxNumber, int minProgressionLength,
+               int maxProgressionLength, int minProgressionStep, int maxProgressionStep) {
+        this.title = title;
+        this.numberOfRounds = numberOfRounds;
+        this.scoreValue = scoreValue;
+        this.minNumber = minNumber;
+        this.maxNumber = maxNumber;
+        this.minProgressionLength = minProgressionLength;
+        this.maxProgressionLength = maxProgressionLength;
+        this.minProgressionStep = minProgressionStep;
+        this.maxProgressionStep = maxProgressionStep;
+
     }
 
-    public static void selectDifficulty() {
-        System.out.println("Select difficulty: Easy, Normal, or Hard");
-        String input = SCANNER.next().toUpperCase();
-        switch (input) {
-            case "EASY" -> setDifficulty(DifficultyValue.EASY);
-            case "NORMAL" -> setDifficulty(DifficultyValue.NORMAL);
-            case "HARD" -> setDifficulty(DifficultyValue.HARD);
-            default -> {
-                System.out.println("Invalid input, defaulting to EASY");
-                setDifficulty(DifficultyValue.HARD);
-            }
-
-        }
+    public String getTitle() {
+        return title;
     }
 
-    public enum DifficultyValue {
-        EASY,
-        NORMAL,
-        HARD;
+    public int getNumberOfRounds() {
+        return numberOfRounds;
+    }
 
-        @Override
-        public String toString() {
-            switch (this) {
-                case EASY:
-                    return "Easy";
-                case NORMAL:
-                    return "Normal";
-                case HARD:
-                    return "Hard";
-                default:
-                    throw new IllegalStateException("Unexpected value: " + this);
-            }
-        }
+    public int getScoreValue() {
+        return scoreValue;
+    }
 
+    public int getMinNumber() {
+        return minNumber;
+    }
+
+    public int getMaxNumber() {
+        return maxNumber;
+    }
+
+    public int getMinProgressionLength() {
+        return minProgressionLength;
+    }
+
+    public int getMaxProgressionLength() {
+        return maxProgressionLength;
+    }
+
+    public int getMinProgressionStep() {
+        return minProgressionStep;
+    }
+
+    public int getMaxProgressionStep() {
+        return maxProgressionStep;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

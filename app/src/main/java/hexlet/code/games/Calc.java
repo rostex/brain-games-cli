@@ -3,24 +3,35 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
-import hexlet.code.core.Difficulty;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calc {
+public class Calc implements Game {
     private static final String GAME_DESCRIPTION = "What is the result of the expression?";
+    private static Calc INSTANCE;
 
-    public static void startGame() {
+    private Calc() {
+    }
+
+    public static Calc getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Calc();
+        }
+        return INSTANCE;
+    }
+
+    @Override
+    public void startGame() {
         Engine.runGame(GAME_DESCRIPTION, generateGameData());
     }
 
     private static List<GameData> generateGameData() {
         List<GameData> gameData = new ArrayList<>();
 
-        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
-            int firstNumber = MathUtils.getRandomNumber(Difficulty.minNumber, Difficulty.maxNumber);
-            int secondNumber = MathUtils.getRandomNumber(Difficulty.minNumber, Difficulty.maxNumber);
+        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
+            int firstNumber = MathUtils.getRandomNumber(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber());
+            int secondNumber = MathUtils.getRandomNumber(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber());
 
             Operator operator = Operator.getRandomOperator();
 

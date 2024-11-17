@@ -6,20 +6,20 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import hexlet.code.core.Difficulty;
 import hexlet.code.core.GameData;
 import hexlet.code.menu.Menu;
-import hexlet.code.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static hexlet.code.Main.SCANNER;
 import static hexlet.code.Main.player;
 
 
 public class Engine {
+    public static Difficulty difficulty = Difficulty.EASY;
 
     public static void runGame(String gameDescription, List<GameData> gameData) {
         String playerName = player.getName();
@@ -27,7 +27,7 @@ public class Engine {
         System.out.println("Hello, " + playerName + "!");
         System.out.println(gameDescription);
 
-        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
+        for (int i = 0; i < difficulty.getNumberOfRounds(); i++) {
             GameData roundData = gameData.get(i);
 
             System.out.println("Question: " + roundData.getQuestion());
@@ -36,17 +36,37 @@ public class Engine {
 
             if (userAnswer.equals(roundData.getAnswer())) {
                 System.out.println("Correct!");
-                updateScore(Difficulty.scoreValue, true);
+                updateScore(difficulty.getScoreValue(), true);
             } else {
                 System.out.println("'" + userAnswer
                         + "' is wrong answer ;(. Correct answer was '"
                         + roundData.getAnswer() + "'.");
-                updateScore(Difficulty.scoreValue, false);
+                updateScore(difficulty.getScoreValue(), false);
             }
         }
         System.out.println("Congratulations, " + playerName + "!\n");
         getTotalScore();
         Menu.getMainMenu();
+    }
+
+    public static void selectDifficulty() {
+        System.out.println("Select difficulty: Easy, Normal, or Hard");
+        String input = SCANNER.next().toUpperCase();
+        switch (input) {
+            case "EASY":
+                Engine.difficulty = Difficulty.EASY;
+                break;
+            case "NORMAL":
+                Engine.difficulty = Difficulty.NORMAL;
+                break;
+            case "HARD":
+                Engine.difficulty = Difficulty.HARD;
+                break;
+            default:
+                System.out.println("Invalid input, defaulting to EASY");
+                Engine.difficulty = Difficulty.EASY;
+        }
+
     }
 
     public static void getTotalScore() {
@@ -73,10 +93,6 @@ public class Engine {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
-            if (!stats.containsKey(playerName)) {
-                stats.put(playerName, 0);
-            }
-
             stats.merge(playerName, scoreChange, Integer::sum);
 
             writeStatsToFile(file, mapper, stats);
@@ -98,9 +114,7 @@ public class Engine {
             return;
         }
 
-        Map<String, Integer> stats = mapper.readValue(file,
-                new TypeReference<Map<String, Integer>>() {
-                });
+        Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
         if (stats.isEmpty()) {
             System.out.println("Top players are not determined yet.");
@@ -108,27 +122,22 @@ public class Engine {
         }
 
         System.out.println("Top 5 players:");
-        List<Map.Entry<String, Integer>> sortedStats = stats.entrySet()
+        AtomicInteger positionNumber = new AtomicInteger(1);
+        stats.entrySet()
                 .stream()
                 .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
-                .collect(Collectors.toList());
+                .limit(5)
+                .forEach(entry -> System.out.println(String.format("%d. %s: %d",
+                        positionNumber.getAndIncrement(), entry.getKey(), entry.getValue())));
 
-        int positionNumber = 1;
-        for (Map.Entry<String, Integer> stat : sortedStats) {
-            if (positionNumber > 5) {
-                break;
-            }
-            String statsTable = String.format("%d. %s: %d", positionNumber, stat.getKey(), stat.getValue());
-            System.out.println(statsTable);
-            positionNumber++;
-        }
     }
 
     public static Map<String, Integer> readStatsFromFile(File file, ObjectMapper mapper) throws IOException {
         if (file.length() == 0) {
             return new HashMap<>();
         }
-        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {});
+        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {
+        });
     }
 
     private static void writeStatsToFile(File file, ObjectMapper mapper,

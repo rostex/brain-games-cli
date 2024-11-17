@@ -3,29 +3,40 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
-import hexlet.code.core.Difficulty;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Progression {
+public class Progression implements Game {
     private static final String GAME_DESCRIPTION = "What number is missing in the progression?";
     private static final int HIDDEN_INDEX_MIN = 1;
+    private static Progression INSTANCE;
 
-    public static void startGame() {
+    private Progression() {
+    }
+
+    public static Progression getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Progression();
+        }
+        return INSTANCE;
+    }
+
+    @Override
+    public void startGame() {
         Engine.runGame(GAME_DESCRIPTION, generateGameData());
     }
 
     private static List<GameData> generateGameData() {
         List<GameData> gameData = new ArrayList<>();
 
-        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
-            int progressionLength = MathUtils.getRandomNumber(Difficulty.minProgressionLength,
-                    Difficulty.maxProgressionLength);
-            int startProgression = MathUtils.getRandomNumber(Difficulty.minProgressionLength,
-                    Difficulty.maxProgressionLength);
-            int rangeProgression = MathUtils.getRandomNumber(Difficulty.minProgressionStep,
-                    Difficulty.maxProgressionStep);
+        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
+            int progressionLength = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionLength(),
+                    Engine.difficulty.getMaxProgressionLength());
+            int startProgression = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionLength(),
+                    Engine.difficulty.getMaxProgressionLength());
+            int rangeProgression = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionStep(),
+                    Engine.difficulty.getMaxProgressionStep());
             int hiddenIndex = MathUtils.getRandomNumber(HIDDEN_INDEX_MIN, progressionLength - 1);
 
             int[] progression = new int[progressionLength];

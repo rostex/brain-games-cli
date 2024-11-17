@@ -3,21 +3,32 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
-import hexlet.code.core.Difficulty;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Prime {
+public class Prime implements Game {
     private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    private static Prime INSTANCE;
 
-    public static void startGame() {
-        Engine.runGame(GAME_DESCRIPTION, generateGameData(Difficulty.minNumber, Difficulty.maxNumber));
+    private Prime() {
+    }
+
+    public static Prime getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Prime();
+        }
+        return INSTANCE;
+    }
+
+    @Override
+    public void startGame() {
+        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber()));
     }
 
     private static List<GameData> generateGameData(int min, int max) {
         List<GameData> gameData = new ArrayList<>();
-        for (int i = 0; i < Difficulty.numberOfRounds; i++) {
+        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
             String question = String.valueOf(MathUtils.getRandomNumber(min, max));
             String rightAnswer = MathUtils.isPrime(Integer.parseInt(question)) ? "yes" : "no";
             gameData.add(new GameData(question, rightAnswer));
