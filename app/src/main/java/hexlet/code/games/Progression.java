@@ -30,13 +30,13 @@ public class Progression implements Game {
     private static List<GameData> generateGameData() {
         List<GameData> gameData = new ArrayList<>();
 
-        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
-            int progressionLength = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionLength(),
-                    Engine.difficulty.getMaxProgressionLength());
-            int startProgression = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionLength(),
-                    Engine.difficulty.getMaxProgressionLength());
-            int rangeProgression = MathUtils.getRandomNumber(Engine.difficulty.getMinProgressionStep(),
-                    Engine.difficulty.getMaxProgressionStep());
+        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
+            int progressionLength = MathUtils.getRandomNumber(Engine.difficulty.minProgressionLength,
+                    Engine.difficulty.maxProgressionLength);
+            int startProgression = MathUtils.getRandomNumber(Engine.difficulty.minProgressionLength,
+                    Engine.difficulty.maxProgressionLength);
+            int rangeProgression = MathUtils.getRandomNumber(Engine.difficulty.minProgressionStep,
+                    Engine.difficulty.maxProgressionLength);
             int hiddenIndex = MathUtils.getRandomNumber(HIDDEN_INDEX_MIN, progressionLength - 1);
 
             int[] progression = new int[progressionLength];

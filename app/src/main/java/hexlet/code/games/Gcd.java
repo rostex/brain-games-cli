@@ -23,12 +23,12 @@ public class Gcd implements Game {
 
     @Override
     public void startGame() {
-        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber()));
+        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber));
     }
 
     private static List<GameData> generateGameData(int min, int max) {
         List<GameData> gameData = new ArrayList<>();
-        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
+        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
             int firstNumber = MathUtils.getRandomNumber(min, max);
             int secondNumber = MathUtils.getRandomNumber(min, max);
             String question = firstNumber + " " + secondNumber;

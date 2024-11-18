@@ -23,12 +23,12 @@ public class Prime implements Game {
 
     @Override
     public void startGame() {
-        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber()));
+        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber));
     }
 
     private static List<GameData> generateGameData(int min, int max) {
         List<GameData> gameData = new ArrayList<>();
-        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
+        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
             String question = String.valueOf(MathUtils.getRandomNumber(min, max));
             String rightAnswer = MathUtils.isPrime(Integer.parseInt(question)) ? "yes" : "no";
             gameData.add(new GameData(question, rightAnswer));

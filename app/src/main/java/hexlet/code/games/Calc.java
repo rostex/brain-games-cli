@@ -29,9 +29,9 @@ public class Calc implements Game {
     private static List<GameData> generateGameData() {
         List<GameData> gameData = new ArrayList<>();
 
-        for (int i = 0; i < Engine.difficulty.getNumberOfRounds(); i++) {
-            int firstNumber = MathUtils.getRandomNumber(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber());
-            int secondNumber = MathUtils.getRandomNumber(Engine.difficulty.getMinNumber(),  Engine.difficulty.getMaxNumber());
+        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
+            int firstNumber = MathUtils.getRandomNumber(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber);
+            int secondNumber = MathUtils.getRandomNumber(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber);
 
             Operator operator = Operator.getRandomOperator();
 
