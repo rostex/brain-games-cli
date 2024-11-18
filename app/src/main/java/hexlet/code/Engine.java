@@ -6,6 +6,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import hexlet.code.core.Difficulty;
 import hexlet.code.core.GameData;
 import hexlet.code.menu.Menu;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,52 +21,60 @@ import static hexlet.code.Main.player;
 
 
 public class Engine {
+    private static final Logger logger = LoggerFactory.getLogger(Engine.class);
     public static Difficulty difficulty = Difficulty.EASY;
 
     public static void runGame(String gameDescription, List<GameData> gameData) {
         String playerName = player.getName();
 
-        System.out.println("Hello, " + playerName + "!");
-        System.out.println(gameDescription);
+        logger.info("Hello, {}!", playerName);
+        logger.info(gameDescription);
 
-        for (int i = 0; i < difficulty.getNumberOfRounds(); i++) {
+        for (int i = 0; i < difficulty.numberOfRounds; i++) {
             GameData roundData = gameData.get(i);
 
-            System.out.println("Question: " + roundData.getQuestion());
-            System.out.println("Answer: ");
+            logger.info("[Round {}/{}] Question: {}", i + 1, difficulty.numberOfRounds, roundData.getQuestion());
+            logger.info("Answer: ");
             String userAnswer = SCANNER.next();
 
             if (userAnswer.equals(roundData.getAnswer())) {
-                System.out.println("Correct!");
-                updateScore(difficulty.getScoreValue(), true);
+                logger.debug("Player answered correctly.");
+                logger.info("Correct!");
+                updateScore(difficulty.scoreValue, true);
+                logger.debug("Player gained {} point(s).", difficulty.scoreValue);
             } else {
-                System.out.println("'" + userAnswer
-                        + "' is wrong answer ;(. Correct answer was '"
-                        + roundData.getAnswer() + "'.");
-                updateScore(difficulty.getScoreValue(), false);
+                logger.debug("Player answered incorrectly.");
+                logger.info("'{}' is wrong answer ;(. Correct answer was '{}'.", userAnswer, roundData.getAnswer());
+                updateScore(difficulty.scoreValue, false);
+                logger.debug("Player lost {} point(s).", difficulty.scoreValue);
             }
         }
-        System.out.println("Congratulations, " + playerName + "!\n");
+        logger.info("Congratulations, {}!\n", playerName);
         getTotalScore();
         Menu.getMainMenu();
     }
 
     public static void selectDifficulty() {
-        System.out.println("Select difficulty: Easy, Normal, or Hard");
+        logger.info("Select difficulty level: Easy, Normal, or Hard");
         String input = SCANNER.next().toUpperCase();
+        logger.debug("Player selected difficulty: {}", input);
         switch (input) {
             case "EASY":
                 Engine.difficulty = Difficulty.EASY;
+                logger.debug("Switched to Easy difficulty.");
                 break;
             case "NORMAL":
                 Engine.difficulty = Difficulty.NORMAL;
+                logger.debug("Switched to Normal difficulty.");
                 break;
             case "HARD":
                 Engine.difficulty = Difficulty.HARD;
+                logger.debug("Switched to Hard difficulty.");
                 break;
             default:
-                System.out.println("Invalid input, defaulting to EASY");
+                logger.error("Invalid input. Defaulting to Easy difficulty.");
                 Engine.difficulty = Difficulty.EASY;
+                logger.debug("Switched to Easy difficulty.");
         }
 
     }
@@ -76,10 +86,15 @@ public class Engine {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
-            System.out.println("Your current total score: " + stats.get(player.getName()));
+            Integer totalScore = stats.get(player.getName());
+            if (totalScore == null) {
+                logger.info("No score found for player {}.", player.getName());
+            } else {
+                logger.info("Your current total score: {}", totalScore);
+            }
 
         } catch (IOException e) {
-            System.out.println("Error reading stats file: " + e.getMessage());
+            logger.error("Error reading stats file: {}", e.getMessage());
         }
     }
 
@@ -97,11 +112,11 @@ public class Engine {
 
             writeStatsToFile(file, mapper, stats);
 
-            String action = isAdd ? "get" : "lose";
-            System.out.println(String.format("You %s %d score(s)", action, value));
+            String action = isAdd ? "gained" : "lost";
+            logger.info("You {} {} score(s)", action, value);
 
         } catch (IOException e) {
-            System.out.println("Error writing to stats file: " + e.getMessage());
+            logger.error("Error writing to stats file: {}", e.getMessage());
         }
     }
 
@@ -109,43 +124,45 @@ public class Engine {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         File file = GameData.gameDataFile;
 
-        if (isFileEmpty(file)) {
-            System.out.println("Top players are not determined yet.");
+        if (!file.exists()) {
+            logger.debug("Stats file does not exist.");
+            logger.info("Top players are not determined yet.");
             return;
         }
 
         Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
         if (stats.isEmpty()) {
-            System.out.println("Top players are not determined yet.");
+            logger.debug("File with players status is empty.");
+            logger.info("Top players are not determined yet.");
             return;
         }
 
-        System.out.println("Top 5 players:");
+        logger.info("Top 5 players:");
         AtomicInteger positionNumber = new AtomicInteger(1);
         stats.entrySet()
                 .stream()
                 .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                 .limit(5)
-                .forEach(entry -> System.out.println(String.format("%d. %s: %d",
-                        positionNumber.getAndIncrement(), entry.getKey(), entry.getValue())));
+                .forEach(entry -> logger.info("{}. {}: {}",
+                        positionNumber.getAndIncrement(), entry.getKey(), entry.getValue()));
 
     }
 
     public static Map<String, Integer> readStatsFromFile(File file, ObjectMapper mapper) throws IOException {
         if (file.length() == 0) {
+            logger.debug("Stats file is empty. Returning an empty map.");
             return new HashMap<>();
         }
-        return mapper.readValue(file, new TypeReference<Map<String, Integer>>() {
-        });
+
+        Map<String, Integer> stats = mapper.readValue(file, new TypeReference<Map<String, Integer>>() {});
+        logger.debug("Successfully read player statistics: {}", stats);
+        return stats;
     }
 
     private static void writeStatsToFile(File file, ObjectMapper mapper,
                                          Map<String, Integer> stats) throws IOException {
         mapper.writeValue(file, stats);
-    }
-
-    private static boolean isFileEmpty(File file) {
-        return !file.exists() || file.length() == 0;
+        logger.debug("Player statistics written to file.");
     }
 }

@@ -1,9 +1,12 @@
 package hexlet.code.core;
 
-import static hexlet.code.Main.SCANNER;
-import static hexlet.code.Main.player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Scanner;
 
 public class Player {
+    private static final Logger logger = LoggerFactory.getLogger(Player.class);
     String name;
 
     public String getName() {
@@ -14,9 +17,14 @@ public class Player {
         this.name = name;
     }
 
-    public static void selectName() {
-        System.out.println("May I have your name?");
-        player.setName(SCANNER.next());
+    public void selectName(Scanner scanner) {
+        if (name == null) {
+            logger.info("Welcome to the Brain Games!");
+        }
+        logger.info("May I have your name?");
+        logger.debug("Prompting player to select a name.");
+        this.setName(scanner.next());
+        logger.debug("Player has selected a name: {}", name);
 
     }
 }
