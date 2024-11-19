@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import hexlet.code.core.Difficulty;
 import hexlet.code.core.GameData;
+import hexlet.code.core.Player;
 import hexlet.code.menu.Menu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,24 +18,22 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static hexlet.code.Main.SCANNER;
-import static hexlet.code.Main.player;
-
 
 public class Engine {
     private static final Logger logger = LoggerFactory.getLogger(Engine.class);
     public static Difficulty difficulty = Difficulty.EASY;
 
     public static void runGame(String gameDescription, List<GameData> gameData) {
-        String playerName = player.getName();
+        String playerName = Player.getInstance().getName();
 
         logger.info("Hello, {}!", playerName);
         logger.info(gameDescription);
 
-        for (int i = 0; i < difficulty.numberOfRounds; i++) {
-            GameData roundData = gameData.get(i);
-
-            logger.info("[Round {}/{}] Question: {}", i + 1, difficulty.numberOfRounds, roundData.getQuestion());
-            logger.info("Answer: ");
+        for (int i = 1; i <= difficulty.numberOfRounds; i++) {
+            GameData roundData = gameData.get(i - 1);
+            logger.info("Round {}/{}", i + 1, difficulty.numberOfRounds);
+            logger.info("Question: {}", roundData.getQuestion());
+            logger.info("Your answer: ");
             String userAnswer = SCANNER.next();
 
             if (userAnswer.equals(roundData.getAnswer())) {
@@ -80,15 +79,16 @@ public class Engine {
     }
 
     public static void getTotalScore() {
+        String playerName = Player.getInstance().getName();
         try {
             File file = GameData.gameDataFile;
 
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             Map<String, Integer> stats = readStatsFromFile(file, mapper);
 
-            Integer totalScore = stats.get(player.getName());
+            Integer totalScore = stats.get(playerName);
             if (totalScore == null) {
-                logger.info("No score found for player {}.", player.getName());
+                logger.info("No score found for player {}.", playerName);
             } else {
                 logger.info("Your current total score: {}", totalScore);
             }
@@ -99,7 +99,7 @@ public class Engine {
     }
 
     public static void updateScore(int value, boolean isAdd) {
-        String playerName = player.getName();
+        String playerName = Player.getInstance().getName();
         int scoreChange = isAdd ? value : -value;
 
         try {
@@ -155,7 +155,8 @@ public class Engine {
             return new HashMap<>();
         }
 
-        Map<String, Integer> stats = mapper.readValue(file, new TypeReference<Map<String, Integer>>() {});
+        Map<String, Integer> stats = mapper.readValue(file, new TypeReference<Map<String, Integer>>() {
+        });
         logger.debug("Successfully read player statistics: {}", stats);
         return stats;
     }

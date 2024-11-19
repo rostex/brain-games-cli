@@ -6,8 +6,19 @@ import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 
 public class Player {
+    private static Player INSTANCE;
     private static final Logger logger = LoggerFactory.getLogger(Player.class);
     String name;
+
+    private Player() {
+    }
+
+    public static Player getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Player();
+        }
+        return INSTANCE;
+    }
 
     public String getName() {
         return name;

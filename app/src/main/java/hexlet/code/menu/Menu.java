@@ -68,7 +68,7 @@ public class Menu {
 
                 switch (choice) {
                     case 1 -> {
-                        Main.player.selectName(Main.SCANNER);
+                        Player.getInstance().selectName(Main.SCANNER);
                         Menu.getMainMenu();
                         return;
                     }
