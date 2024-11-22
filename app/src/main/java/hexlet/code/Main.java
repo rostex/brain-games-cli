@@ -1,16 +1,13 @@
 package hexlet.code;
 
+import hexlet.code.core.GlobalScanner;
 import hexlet.code.core.Player;
-
-import java.util.Scanner;
-
-import static hexlet.code.menu.Menu.getMainMenu;
+import hexlet.code.menu.Menu;
 
 public class Main {
-    public static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Player.getInstance().selectName(SCANNER);
-        getMainMenu();
+        Player.getInstance().selectName(GlobalScanner.getInstance());
+        new Menu().getMainMenu();
     }
 }

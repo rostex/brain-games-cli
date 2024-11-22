@@ -1,38 +1,29 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
 import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Even implements Game {
-    private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-    private static Even INSTANCE;
+public class Even extends Game {
 
-    private Even() {
-    }
-
-    public static Even getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Even();
-        }
-        return INSTANCE;
+    @Override
+    protected String getGameDescription() {
+        return "Answer 'yes' if the number is even, otherwise answer 'no'.";
     }
 
     @Override
-    public void startGame() {
-        Engine.runGame(GAME_DESCRIPTION, generateGameData(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber));
-    }
-
-    private static List<GameData> generateGameData(int min, int max) {
+    protected List<GameData> getGeneratedGameData() {
         List<GameData> gameData = new ArrayList<>();
-        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
-            int randomNumber = MathUtils.getRandomNumber(min, max);
+        int minNumber = difficultyValue.minNumber;
+        int maxNumber = difficultyValue.maxNumber;
+        for (int i = 0; i < difficultyValue.numberOfRounds; i++) {
+            int randomNumber = MathUtils.getRandomNumber(minNumber, maxNumber);
             String rightAnswer = MathUtils.isEven(randomNumber) ? "yes" : "no";
             gameData.add(new GameData(String.valueOf(randomNumber), rightAnswer));
         }
         return gameData;
     }
+
 }

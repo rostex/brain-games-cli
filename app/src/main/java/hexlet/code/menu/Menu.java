@@ -1,19 +1,20 @@
 package hexlet.code.menu;
 
-import hexlet.code.Engine;
-import hexlet.code.Main;
+import hexlet.code.managers.DifficultyManager;
+import hexlet.code.core.GlobalScanner;
 import hexlet.code.core.Player;
 import hexlet.code.games.*;
+import hexlet.code.managers.StatisticsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class Menu {
-    private static final Logger logger = LoggerFactory.getLogger(Player.class);
+    private static final Logger logger = LoggerFactory.getLogger(Menu.class);
 
-    public static void getMainMenu() {
-        logger.info("{} difficulty level set", Engine.difficulty.title);
+    public void getMainMenu() {
+        logger.info("{} difficulty level set", Game.difficultyValue.title);
         logger.info("Please enter the menu number and press Enter.");
         logger.debug("Displaying the main menu.");
 
@@ -25,19 +26,19 @@ public class Menu {
 
         while (true) {
             try {
-                int choice = Integer.parseInt(Main.SCANNER.next());
+                int choice = Integer.parseInt(GlobalScanner.getInstance().next());
                 logger.debug("Player enter the number {}", choice);
                 MenuItem game = MenuItem.fromNumber(choice);
 
                 switch (game) {
-                    case EVEN -> Even.getInstance().startGame();
-                    case CALC -> Calc.getInstance().startGame();
-                    case GCD -> Gcd.getInstance().startGame();
-                    case PROGRESSION -> Progression.getInstance().startGame();
-                    case PRIME -> Prime.getInstance().startGame();
+                    case EVEN -> new Even().startGame();
+                    case CALC -> new Calc().startGame();
+                    case GCD -> new Gcd().startGame();
+                    case PROGRESSION -> new Progression().startGame();
+                    case PRIME -> new Prime().startGame();
                     case SETTINGS -> getSettingsMenu();
                     case STATISTICS -> {
-                        Engine.getStatistics();
+                        StatisticsManager.getStatistics();
                         getMainMenu();
                     }
                     case EXIT -> {
@@ -55,7 +56,7 @@ public class Menu {
         }
     }
 
-    public static void getSettingsMenu() {
+    public void getSettingsMenu() {
         logger.info("Please enter the menu number and press Enter.");
         logger.info("1 - Change player name");
         logger.info("2 - Select game difficulty");
@@ -63,22 +64,22 @@ public class Menu {
 
         while (true) {
             try {
-                int choice = Integer.parseInt(Main.SCANNER.next());
+                int choice = Integer.parseInt(GlobalScanner.getInstance().next());
                 logger.debug("Player enter the number {}", choice);
 
                 switch (choice) {
                     case 1 -> {
-                        Player.getInstance().selectName(Main.SCANNER);
-                        Menu.getMainMenu();
+                        Player.getInstance().selectName(GlobalScanner.getInstance());
+                        getMainMenu();
                         return;
                     }
                     case 2 -> {
-                        Engine.selectDifficulty();
-                        Menu.getMainMenu();
+                        new DifficultyManager().selectDifficulty(GlobalScanner.getInstance().next());
+                        getMainMenu();
                         return;
                     }
                     case 3 -> {
-                        Menu.getMainMenu();
+                        getMainMenu();
                         return;
                     }
                 }

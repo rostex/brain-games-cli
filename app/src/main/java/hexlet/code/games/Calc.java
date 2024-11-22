@@ -1,37 +1,27 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
 import hexlet.code.core.GameData;
 import hexlet.code.utils.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calc implements Game {
-    private static final String GAME_DESCRIPTION = "What is the result of the expression?";
-    private static Calc INSTANCE;
+public class Calc extends Game {
 
-    private Calc() {
-    }
-
-    public static Calc getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Calc();
-        }
-        return INSTANCE;
+    @Override
+    protected String getGameDescription() {
+        return "What is the result of the expression?";
     }
 
     @Override
-    public void startGame() {
-        Engine.runGame(GAME_DESCRIPTION, generateGameData());
-    }
-
-    private static List<GameData> generateGameData() {
+    protected List<GameData> getGeneratedGameData() {
         List<GameData> gameData = new ArrayList<>();
 
-        for (int i = 0; i < Engine.difficulty.numberOfRounds; i++) {
-            int firstNumber = MathUtils.getRandomNumber(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber);
-            int secondNumber = MathUtils.getRandomNumber(Engine.difficulty.minNumber,  Engine.difficulty.maxNumber);
+        int minNumber = difficultyValue.minNumber;
+        int maxNumber = difficultyValue.maxNumber;
+        for (int i = 0; i < difficultyValue.numberOfRounds; i++) {
+            int firstNumber = MathUtils.getRandomNumber(minNumber, maxNumber);
+            int secondNumber = MathUtils.getRandomNumber(minNumber, maxNumber);
 
             Operator operator = Operator.getRandomOperator();
 
